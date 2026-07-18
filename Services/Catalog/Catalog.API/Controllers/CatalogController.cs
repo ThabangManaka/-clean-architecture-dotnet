@@ -1,4 +1,6 @@
 ﻿
+using Catalog.Application.DTOs;
+using Catalog.Application.Queries;
 using Catalog.Core.Specifications;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -17,13 +19,13 @@ namespace Catalog.API.Controllers
         }
 
 
-        //[HttpGet("GetAllProducts")]
-        //public async Task<ActionResult<IList<ProductDto>>> GetAllProducts([FromQuery] CatalogSpecParams catalogSpecParams)
-        //{
-        //    var query = new GetAllProductsQuery(catalogSpecParams);
-        //    var result = await _mediator.Send(query);
-        //    return Ok(result);
-        //}
+        [HttpGet("GetAllProducts")]
+        public async Task<ActionResult<IList<ProductDto>>> GetAllProducts([FromQuery] CatalogSpecParams catalogSpecParams)
+        {
+            var query = new GetAllProductsQuery(catalogSpecParams);
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
 
     }
 }
