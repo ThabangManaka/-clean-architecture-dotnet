@@ -61,18 +61,24 @@ var app = builder.Build();
 
 
 //Seed Mongo db on startup 
-using (var scope = app.Services.CreateScope())
+try
 {
+    using var scope = app.Services.CreateScope();
     var options = scope.ServiceProvider.GetRequiredService<IOptions<DatabaseSettings>>();
     await DatabaseSeeder.SeedAsync(options);
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex);
+    throw;
 }
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
-
 
 //Enable Swagger
 app.UseSwagger();

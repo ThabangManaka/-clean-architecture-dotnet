@@ -21,7 +21,12 @@ namespace Catalog.Infrastructure.Data
             var products = db.GetCollection<Product>(settings.ProductCollectionName);
 
 
-            var SeedBasePath = Path.Combine("Data", "SeedData");
+            var SeedBasePath = Path.Combine(
+          Directory.GetCurrentDirectory(),
+          "..",
+          "Catalog.Infrastructure",
+          "Data",
+          "SeedData");
 
 
             List<ProductBrand> brandList = new();
