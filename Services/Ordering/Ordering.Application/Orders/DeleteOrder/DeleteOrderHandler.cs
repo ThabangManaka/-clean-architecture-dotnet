@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Ordering.Application.Abstractions;
+using Ordering.Application.Exceptions;
 using Ordering.Core.Entities;
 using Ordering.Core.Repositories;
 
