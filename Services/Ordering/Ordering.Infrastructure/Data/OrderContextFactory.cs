@@ -9,10 +9,13 @@ namespace Ordering.Infrastructure.Data
     {
         public OrderContext CreateDbContext(string[] args)
         {
-            IConfiguration configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .Build();
+            var configuration = new ConfigurationBuilder()
+            .SetBasePath(
+                Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    "../Ordering.API"))
+            .AddJsonFile("appsettings.json", optional: false)
+            .Build();
 
             var connectionString =
                 configuration.GetConnectionString("OrderingConnectionString");
