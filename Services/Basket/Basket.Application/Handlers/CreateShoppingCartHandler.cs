@@ -1,6 +1,4 @@
-﻿
-
-using Basket.Application.Commands;
+﻿using Basket.Application.Commands;
 using Basket.Application.GrpcService;
 using Basket.Application.Mappers;
 using Basket.Application.Responses;
@@ -29,13 +27,13 @@ namespace Basket.Application.Handlers
 
 
             // Convert Command to Domain Entity
-            var shoppingCartEntity = request.ToEntity();
+            var shoppingCartEntity = request.ToShoppingCartEntity();
             // Save to Redis
             var updatedCart = await _basketRepository.UpsertBasket(shoppingCartEntity);
             // Save to Redis
            // var updatedCart = await _basketRepository.UpsertBasket(shoppingCartEntity);
             // Convert back to Response
-            return updatedCart.ToResponse();
+            return BasketMapper.MapCart(updatedCart);
         }
     }
 }
