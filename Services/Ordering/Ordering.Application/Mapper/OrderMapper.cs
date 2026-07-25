@@ -1,4 +1,5 @@
-﻿using Ordering.Application.DTOs;
+﻿using EventBus.Messages.Events;
+using Ordering.Application.DTOs;
 using Ordering.Application.Orders.CreateOrder;
 using Ordering.Application.Orders.UpdateOrder;
 using Ordering.Core.Entities;
@@ -9,10 +10,9 @@ namespace Ordering.Application.Mapper
     public static class OrderMapper
     {
         public static OrderDto ToDto(this Order order) =>
-           new(order.Id, order.UserName!, order.TotalPrice ?? 0, order.FirstName!, order.LastName!,
-               order.EmailAddress!, order.AddressLine!, order.Country!, order.State!, order.ZipCode!,
-               order.CardName!, order.CardNumber!, order.Expiration!, order.Cvv!, order.PaymentMethod ?? 0);
-
+            new(order.Id, order.UserName!, order.TotalPrice ?? 0, order.FirstName!, order.LastName!,
+                order.EmailAddress!, order.AddressLine!, order.Country!, order.State!, order.ZipCode!,
+                order.CardName!, order.CardNumber!, order.Expiration!, order.Cvv!, order.PaymentMethod ?? 0);
         public static Order ToEntity(this CreateOrderCommand command)
         {
             return new Order
@@ -90,6 +90,27 @@ namespace Ordering.Application.Mapper
                 Expiration = dto.Expiration,
                 Cvv = dto.Cvv,
                 PaymentMethod = dto.PaymentMethod
+            };
+        }
+
+        public static CreateOrderCommand ToCheckoutOrderCommand(this BasketCheckoutEvent message)
+        {
+            return new CreateOrderCommand
+            {
+                UserName = message.UserName!,
+                TotalPrice = message.TotalPrice ?? 0,
+                FirstName = message.FirstName!,
+                LastName = message.LastName!,
+                EmailAddress = message.EmailAddress!,
+                AddressLine = message.AddressLine!,
+                Country = message.Country!,
+                State = message.State!,
+                ZipCode = message.ZipCode!,
+                CardName = message.CardName!,
+                CardNumber = message.CardNumber!,
+                Expiration = message.Expiration!,
+                Cvv = message.Cvv!,
+                PaymentMethod = message.PaymentMethod ?? 0
             };
         }
     }
