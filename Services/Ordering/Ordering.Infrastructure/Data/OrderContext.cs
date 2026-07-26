@@ -10,7 +10,7 @@ namespace Ordering.Infrastructure.Data
 
         }
         public DbSet<Order> Orders { get; set; }
-
+        public DbSet<OutboxMessage> OutboxMessages { get; set; }
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             foreach (var entry in ChangeTracker.Entries<EntityBase>())
