@@ -27,10 +27,12 @@
        <Project Path="Services/Ordering/Ordering.Core/Ordering.Core.csproj" Id="f0f939fb-4d11-4ab8-b741-9c058fb6ee24" />
        <Project Path="Services/Ordering/Ordering.Infrastructure/Ordering.Infrastructure.csproj" Id="7bcb5e7a-166e-4fe0-af25-0fc45578f733" />
   </Folder>
-     <Folder Name="/Services/Payment/">
+  
+  <Folder Name="/Services/Payment/">
           <File Path="Dockerfile" />
           <Project Path="Services/Payment/Payment/Payment.csproj" Id="63a1c797-cc15-4e0d-a6f3-4e935875b27f" />
-     </Folder>
+  </Folder>
+
   <Folder Name="/Solution Items/">
     <File Path="docker-compose.override.yml" />
     <File Path="docker-compose.yml" />
