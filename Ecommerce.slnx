@@ -1,5 +1,6 @@
 <Solution>
      <Folder Name="/Infrastructure/">
+          <Project Path="Infrastructure/Common.Logging/Common.Logging.csproj" Id="15ef030e-fb97-4235-b78d-4bf77777102d" />
           <Project Path="Infrastructure/EventBus.Messages/EventBus.Messages.csproj" />
      </Folder>
   <Folder Name="/Services/" />
@@ -39,7 +40,6 @@
   </Folder>
   
   <Folder Name="/Services/Identity/">
-    <Project Path="Services/Identity/Identity/Identity.csproj"
-             Id="1abfb57a-dabe-41c3-9c8d-9d9e93fde12d" />
-</Folder>
+       <Project Path="Services/Identity/Identity/Identity.csproj" Id="1abfb57a-dabe-41c3-9c8d-9d9e93fde12d" />
+  </Folder>
 </Solution>
