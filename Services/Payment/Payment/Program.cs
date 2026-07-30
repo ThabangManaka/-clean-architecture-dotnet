@@ -1,6 +1,8 @@
+using Common.Logging;
 using EventBus.Messages.Common;
 using MassTransit;
 using Payment.EventBusSonsume;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +27,7 @@ builder.Services.AddMassTransit(config =>
     });
 });
 
+builder.Host.UseSerilog(Logging.ConfigureLogger);
 
 var app = builder.Build();
 
@@ -35,6 +38,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+if(!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseAuthorization();
 

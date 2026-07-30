@@ -1,5 +1,8 @@
+using Common.Logging;
+using Microsoft.Win32;
 using Ordering.API.Extensions;
 using Ordering.Infrastructure.Data;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +20,8 @@ builder.Services.AddSwaggerGen();
 //Ordering services
 builder.Services.AddOrderingServices(builder.Configuration);
 
+//Register Logging
+builder.Host.UseSerilog(Logging.ConfigureLogger);
 
 var app = builder.Build();
 
