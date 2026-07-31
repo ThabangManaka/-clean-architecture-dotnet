@@ -1,6 +1,7 @@
 <Solution>
      <Folder Name="/Aspire/">
           <Project Path="Aspire/Ecommerce.AppHost/Ecommerce.AppHost.csproj" Id="afcbe29a-b680-4187-8da6-4f1426bb38fd" />
+          <Project Path="Aspire/Ecommerce.ServiceDefaults/Ecommerce.ServiceDefaults.csproj" Id="d6cb3179-8d64-4b33-8065-7e818663ca72" />
      </Folder>
      <Folder Name="/Infrastructure/">
           <Project Path="Infrastructure/Common.Logging/Common.Logging.csproj" Id="15ef030e-fb97-4235-b78d-4bf77777102d" />
