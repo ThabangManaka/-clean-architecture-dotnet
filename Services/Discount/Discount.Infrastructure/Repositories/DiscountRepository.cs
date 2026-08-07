@@ -1,9 +1,7 @@
-﻿
-
-using Catalog.Infrastructure.Settings;
-using Dapper;
+﻿using Dapper;
 using Discount.Core.Entities;
 using Discount.Core.Repositories;
+using Discount.Infrastructure.Settings;
 using Microsoft.Extensions.Options;
 using Npgsql;
 

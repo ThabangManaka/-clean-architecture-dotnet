@@ -1,9 +1,10 @@
-using Catalog.Infrastructure.Settings;
+
+using Common.Logging;
 using Discount.API.Services;
 using Discount.Application.Handlers;
 using Discount.Core.Repositories;
 using Discount.Infrastructure.Repositories;
-using Common.Logging;
+using Discount.Infrastructure.Settings;
 using Serilog;
 using System.Reflection;
 
@@ -20,8 +21,11 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(assemblies
 builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
 builder.Services.AddGrpc();
 
-builder.Services.Configure<DatabaseSettings>(
-    builder.Configuration.GetSection("DatabaseSettings"));
+builder.Services.Configure<DatabaseSettings>(options =>
+{
+    options.ConnectionString =
+        builder.Configuration.GetConnectionString("discountdb")!;
+});
 
 //Register Logging
 builder.Host.UseSerilog(Logging.ConfigureLogger);
@@ -37,7 +41,7 @@ var app = builder.Build();
 //{
 //    app.MapOpenApi();
 //}
-
+app.MigrateDatabase();
 app.UseRouting();
 app.UseEndpoints(endpoints =>
 {
